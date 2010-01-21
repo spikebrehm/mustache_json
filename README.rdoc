@@ -53,7 +53,7 @@ to be able to have a swappable JSON encoding back-end. Back-ends are settable
 by calling <tt>Mustache::JSON.backend = :new_backend</tt>. Currently it defaults
 to the JSON gem but the following back-ends are available:
 
-* JSON Gem (<tt>:json</tt>)
+* JSON Gem (<tt>:json_gem</tt>)
 * JSON Pure (<tt>:json_pure</tt>)
 * ActiveSupport (<tt>:active_support</tt>)
 * YAJL Ruby (<tt>:yajl</tt>)
