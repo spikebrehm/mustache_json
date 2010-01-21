@@ -1,18 +1,51 @@
-= mustache-json
+= Mustache JSON Serialization
 
-Description goes here.
+The <tt>mustache_json</tt> gem provides a simple way to encode Mustaches
+into JSON for cross-compatibility with other Mustache rendering libraries
+such as mustache.js (http://github.com/janl/mustache.js).
+
+It extends Mustache in a simple way such that all public instance methods
+declared in your Mustache will be automatically serialized into json when
+the <tt>#to_json</tt> method is called. Any context variables that have 
+been set will be included as well. For example, take this Mustache:
+
+    require 'mustache_json'
+    
+    class Person < Mustache
+      def initialize(first_name, last_name)
+        context[:first_name], context[:last_name] = first_name, last_name
+      end
+      
+      def initials
+        "#{context[:first_name][0..0]}.#{context[:last_name][0..0]}."
+      end
+      
+      def listing
+        "#{context[:last_name]}, #{context[:first_name]}"
+      end
+    end
+    
+With <tt>mustache_json</tt> you are able to do this:
+
+    bob = Person.new('Bob', 'Bobson')
+    bob.to_json
+    
+Which will output:
+
+    {"last_name":"Bobson","initials":"B.B.","listing":"Bobson, Bob","first_name":"Bob"}
+    
+It's a simple addition to Mustache but provides some powerful functionality
+toward views that can be rendered either server-side (in Ruby) or client-side
+(in Javascript).
 
 == Note on Patches/Pull Requests
  
 * Fork the project.
 * Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but
-   bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+* Add tests for it. This is important so I don't break it in a future version unintentionally.
+* Commit, do not mess with rakefile, version, or history. (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request.
 
 == Copyright
 
-Copyright (c) 2010 Michael Bleigh. See LICENSE for details.
+Copyright (c) 2010 Intridea, Inc. and Michael Bleigh. See LICENSE for details.
