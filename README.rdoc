@@ -4,6 +4,14 @@ The <tt>mustache_json</tt> gem provides a simple way to encode Mustaches
 into JSON for cross-compatibility with other Mustache rendering libraries
 such as mustache.js (http://github.com/janl/mustache.js).
 
+== Installation
+
+Mustache JSON is available as a gem on Gemcutter:
+
+    gem install mustache_json
+    
+== Usage
+
 It extends Mustache in a simple way such that all public instance methods
 declared in your Mustache will be automatically serialized into json when
 the <tt>#to_json</tt> method is called. Any context variables that have 
