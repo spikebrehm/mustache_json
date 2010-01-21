@@ -50,8 +50,10 @@ toward views that can be rendered either server-side (in Ruby) or client-side
 
 This library doesn't depend on any specific JSON library and is instead built
 to be able to have a swappable JSON encoding back-end. Back-ends are settable
-by calling <tt>Mustache::JSON.backend = :new_backend</tt>. Currently it defaults
-to the JSON gem but the following back-ends are available:
+by calling <tt>Mustache::JSON.backend = :new_backend</tt>. You can also set it
+to a class, which simply expects that there be a class method <tt>encode</tt>
+that can be called with a Hash. Currently it defaults to the JSON gem but the 
+following back-ends are available:
 
 * JSON Gem (<tt>:json_gem</tt>)
 * JSON Pure (<tt>:json_pure</tt>)

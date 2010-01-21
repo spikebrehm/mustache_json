@@ -44,8 +44,12 @@ class Mustache
     #
     # The default backend is the JSON gem.
     def self.backend=(backend)
-      require "mustache/json/backends/#{backend.to_s.downcase}.rb"
-      @backend = class_for(backend)
+      if backend.is_a?(Class)
+        @backend = backend
+      else
+        require "mustache/json/backends/#{backend.to_s.downcase}.rb"
+        @backend = class_for(backend)
+      end
     end
     
     # Generic JSON encoder that will use the specified back-end.

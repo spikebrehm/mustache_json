@@ -56,6 +56,16 @@ describe Mustache do
       @stache = MustachioedPerson.new
     end
     
+    describe ' swappable backends' do
+      require 'mustache/json/backends/json_gem'
+      it 'should accept a strings, symbols, and classes' do
+        [:json_gem, 'json_gem', Mustache::JSON::Backends::JsonGem].each do |backend|
+          Mustache::JSON.backend = backend
+          Mustache::JSON.backend.should == Mustache::JSON::Backends::JsonGem
+        end
+      end
+    end
+    
     [:json_gem, :json_pure, :yajl, :active_support].each do |backend|
       describe " with the #{backend} backend" do
         before do
