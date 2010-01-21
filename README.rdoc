@@ -46,6 +46,18 @@ It's a simple addition to Mustache but provides some powerful functionality
 toward views that can be rendered either server-side (in Ruby) or client-side
 (in Javascript).
 
+== Swappable JSON Backends
+
+This library doesn't depend on any specific JSON library and is instead built
+to be able to have a swappable JSON encoding back-end. Back-ends are settable
+by calling <tt>Mustache::JSON.backend = :new_backend</tt>. Currently it defaults
+to the JSON gem but the following back-ends are available:
+
+* JSON Gem (<tt>:json</tt>)
+* JSON Pure (<tt>:json_pure</tt>)
+* ActiveSupport (<tt>:active_support</tt>)
+* YAJL Ruby (<tt>:yajl</tt>)
+
 == Note on Patches/Pull Requests
  
 * Fork the project.
