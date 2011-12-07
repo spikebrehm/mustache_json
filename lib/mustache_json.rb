@@ -18,14 +18,16 @@ class Mustache
       result
     end
     
-    hash.merge!(context)
+    # hash.merge!(context)
   end
   
   # Convert the current Mustache object to JSON and
   # provide optional additional context for the result.
   def to_json(additional_context = {})
-    context.merge(additional_context)
-    Mustache::JSON.encode(serializable_hash)
+    hash = serializable_hash
+    hash.merge!(additional_context)
+    puts additional_context.inspect
+    Mustache::JSON.encode(hash)
   end
   
   module JSON
