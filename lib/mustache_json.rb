@@ -26,7 +26,6 @@ class Mustache
   def to_json(additional_context = {})
     hash = serializable_hash
     hash.merge!(additional_context)
-    puts additional_context.inspect
     Mustache::JSON.encode(hash)
   end
   
